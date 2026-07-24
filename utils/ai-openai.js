@@ -2,10 +2,9 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: process.env.AI_API_KEY,
   baseURL: process.env.AI_URL,
-  dangerouslyAllowBrowser: true,
 });
 
-// Call AI API for dream interpretation
+// Call OpenAI API for dream interpretation
 export async function getDreamInterpretation(dreamText) {
   if (!process.env.AI_API_KEY) {
     throw new Error("Server misconfigured: AI_API_KEY is missing");
@@ -31,7 +30,7 @@ export async function getDreamInterpretation(dreamText) {
     });
     return message.choices[0].message.content.trim();
   } catch (error) {
-    console.error("AI API error:", error);
+    console.error("OpenAI API error:", error);
     throw new Error(`API error: ${error.message}`);
   }
 }
